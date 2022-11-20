@@ -1,0 +1,65 @@
+if game.PlaceId == 11563572312 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Kronox Hub", IntroText = "Kornox Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
+
+--Value--
+_G.autoHatch = true
+_G.selectEgg = "StarterEgg"
+
+--Function--
+function autoHatch()
+    while _G.autoHatch == true do
+    game:GetService("ReplicatedStorage").Communication.PetEvents.HatchEgg:FireServer(_G.selectEgg)        
+    wait(.0000000000000001)
+    end
+end
+
+--Tabs--
+local FarmTab = Window:MakeTab({
+	Name = "Auto Farm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local EggsTab = Window:MakeTab({
+	Name = "Eggs",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+--Section--
+
+local Section = FarmTab:AddSection({
+	Name = "Auto Farm - Coming Soon"
+})
+local Section = EggsTab:AddSection({
+	Name = "Eggs"
+})
+
+
+--Checkbox--
+
+EggsTab:AddToggle({
+	Name = "AutoHatch",
+	Default = false,
+	Callback = function(Value)
+        _G.autoHatch = Value 
+		autoHatch(Value)
+	end    
+})
+
+--Dropdown--
+EggsTab:AddDropdown({
+	Name = "Select Egg",
+	Default = "StartEggs",
+	Options = {"StarterEgg", "DesertEgg", "BeachEgg", "SnowEgg", "LavaEgg", "MagicEgg", "CandyEgg"},
+	Callback = function(Value)
+        _G.selectEgg = Value
+		print(_G.selectEgg)
+	end    
+})
+
+
+end
+OrionLib:Init()
