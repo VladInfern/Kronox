@@ -1,6 +1,6 @@
 if game.PlaceId == 3652625463 then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Kronox Hub", IntroText = "Kronox Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
+local Window = OrionLib:MakeWindow({Name = "Kronox Hub", IntroText = "Kronox Hub || 💪🏻 Lifting Simulator", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
 local vu = game:GetService("VirtualUser")
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
