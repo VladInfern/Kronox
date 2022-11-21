@@ -1,6 +1,12 @@
 if game.PlaceId == 3652625463 then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Kronox Hub", IntroText = "Kronox Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 
 --Value--
 _G.autoFarm = true
@@ -20,7 +26,12 @@ function autoSell()
         wait(2.0)
     end
 end
-
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 --Tabs--
 local FarmTab = Window:MakeTab({
 	Name = "Auto Farm",
@@ -33,7 +44,9 @@ local FarmTab = Window:MakeTab({
 local Section = FarmTab:AddSection({
 	Name = "Auto Farm"
 })
-
+local Section = FarmTab:AddSection({
+	Name = "Anti-Afk is On"
+})
 
 --Checkbox--
 
@@ -53,4 +66,6 @@ FarmTab:AddToggle({
 		autoSell(Value)
 	end    
 })
+
+
 end
