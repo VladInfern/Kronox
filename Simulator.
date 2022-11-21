@@ -1,0 +1,56 @@
+if game.PlaceId == 3652625463 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Kronox Hub", IntroText = "Kronox Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
+
+--Value--
+_G.autoFarm = true
+_G.autoSell = true
+
+--Function--
+function autoFarm()
+    while _G.autoFarm == true do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"GainMuscle"})
+        wait(.0000000000000001)
+    end
+end
+
+function autoSell()
+    while _G.autoSell == true do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"SellMuscle"})
+        wait(2.0)
+    end
+end
+
+--Tabs--
+local FarmTab = Window:MakeTab({
+	Name = "Auto Farm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+--Section--
+
+local Section = FarmTab:AddSection({
+	Name = "Auto Farm"
+})
+
+
+--Checkbox--
+
+FarmTab:AddToggle({
+	Name = "Auto Click",
+	Default = false,
+	Callback = function(Value)
+        _G.autoFarm = Value 
+		autoFarm(Value)
+	end    
+})
+FarmTab:AddToggle({
+	Name = "Auto Sell",
+	Default = false,
+	Callback = function(Value)
+        _G.autoSell = Value 
+		autoSell(Value)
+	end    
+})
+end
