@@ -1,0 +1,142 @@
+if game.PlaceId == 8750997647 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Kronox Hub || ⚡ Tapping Legends X", IntroText = "Kronox Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
+
+local Autofarm = Window:MakeTab({
+    Name = "Autofarm"
+})
+
+local Teleporterz = Window:MakeTab({
+    Name = "Teleport"
+})
+local Cred = Window:MakeTab({
+    Name = "Credits"
+})
+    Cred:AddButton({
+    Name = "Copy Discord",
+    Callback = function()
+        setclipboard("Kronox#9198")
+        toclipboard("Kronox#9198")
+    end,
+})
+
+
+--Game Data
+
+local Eggs = {}
+
+for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+    if v:IsA"Folder" and v.Parent.Name == "Eggs" then
+        table.insert(Eggs,tostring(v))
+    end
+end
+local Player = {}
+
+for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
+    if v:IsA"Folder" and v.Parent.Name == "Stats" then
+        table.insert(Player,tostring(v))
+    end
+end
+
+local Teleport = {}
+
+for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+    if v:IsA"Part" and v.Parent.Name == "Teleporters" then
+        table.insert(Teleport,tostring(v))
+    end
+end
+
+
+local function getCoin()
+    local dist, thing = math.huge
+    for i,v in pairs(workspace.Drops:GetDescendants()) do
+        if v:IsA"Model" and v:FindFirstChild("Circle") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Circle.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+    Autofarm:AddToggle({
+    Name = "Auto Click",
+    Callback = function(c)
+        cc = c
+        while cc do task.wait()
+            game:GetService("ReplicatedStorage").Remotes.Tap:FireServer()
+        end
+    end,
+    Enabled = false
+})
+    Autofarm:AddToggle({
+    Name = "Auto Click with Coins",
+    Callback = function(b)
+        bb = b
+        while bb do task.wait()
+            game:GetService("ReplicatedStorage").Remotes.Tap:FireServer(getCoin().Name) 
+        
+        end
+    end,
+    Enabled = false
+})
+
+    Autofarm:AddToggle({
+    Name = "AFK Coins",
+    Callback = function(y)
+        yy = y
+        while yy do task.wait()
+    
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getCoin().Circle.CFrame
+                        for i,v in pairs(workspace.Drops:GetDescendants()) do
+                            if v:IsA"Model" and v:FindFirstChild("Circle") then
+                        v.HP.Value = 0
+                    end
+                end
+            end
+        end,
+    Enabled = false
+})
+    Autofarm:AddToggle({
+    Name = "Auto Open",
+    Callback = function(a)
+        aa = a
+        while aa do task.wait()
+            local ohString1 = selectedEggs
+            game:GetService("ReplicatedStorage").Remotes.BuyEgg:InvokeServer(tostring(ohString1),3)
+        end
+    end,
+    Enabled = false
+})
+    Autofarm:AddDropdown({
+    Name = "Select Egg",
+    Callback = function(selected)
+        getgenv().selectedEggs = selected
+
+    end,
+    Options = 
+    Eggs
+})
+
+
+
+    Teleporterz:AddDropdown({
+    Name = "Maps",
+    Callback = function(pweasemwaster)
+        getgenv().kitten = pweasemwaster
+    end,
+    Options = Teleport
+})
+
+    Teleporterz:AddButton({
+    Name = "Teleport",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Teleporters[kitten].CFrame
+    end,
+})
+    Autofarm:AddParagraph("You have to sit next to the egg ","")
+
+end
+OrionLib:Init()
