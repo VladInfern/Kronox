@@ -33,34 +33,15 @@ local FarmTab = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
-
---Section--
-
-local Section = FarmTab:AddSection({
-	Name = "Auto Farm"
+local CreditsTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+	})
+CreditsTab:AddButton({
+	Name = "Copy Discord",
+	Callback = function()
+	setclipboard("https://discord.gg/k7bJNMxjpz")
+	toclipboard("https://discord.gg/k7bJNMxjpz")
+	end,
 })
-local Section = FarmTab:AddSection({
-	Name = "Anti-Afk is On"
-})
-
---Checkbox--
-
-FarmTab:AddToggle({
-	Name = "Auto Click",
-	Default = false,
-	Callback = function(Value)
-        _G.autoFarm = Value 
-		autoFarm(Value)
-	end    
-})
-FarmTab:AddToggle({
-	Name = "Auto Sell",
-	Default = false,
-	Callback = function(Value)
-        _G.autoSell = Value 
-		autoSell(Value)
-	end    
-})
-
-
-end
