@@ -35,8 +35,8 @@ local CreditsTab = Window:MakeTab({
 CreditsTab:AddButton({
 	Name = "Copy Discord",
 	Callback = function()
-	setclipboard("Kronox#9198")
-	toclipboard("Kronox#9198")
+	setclipboard("https://discord.gg/k7bJNMxjpz")
+	toclipboard("https://discord.gg/k7bJNMxjpz")
 	end,
 })
 	
