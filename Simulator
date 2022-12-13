@@ -1,6 +1,6 @@
 if game.PlaceId == 11563572312 then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Kronox Hub || [🦃 UPDATE] Ultimate Magnet Simulator", IntroText = "Kronox Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
+local Window = OrionLib:MakeWindow({Name = "Ultimate Magnet Simulator", IntroText = "Kronox Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Kronox"})
 	
 --Value--
 _G.autoHatch = true
