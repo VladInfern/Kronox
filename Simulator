@@ -64,7 +64,7 @@ end
 EggsTab:AddDropdown({
 	Name = "Select Egg",
 	Default = "StartEggs",
-	Options = {"StarterEgg", "DesertEgg", "BeachEgg", "SnowEgg", "LavaEgg", "MagicEgg", "CandyEgg", "SteampunkEgg"},
+	Options = {"StarterEgg", "DesertEgg", "BeachEgg", "SnowEgg", "LavaEgg", "MagicEgg", "CandyEgg", "SteampunkEgg", "ScifiEgg"},
 	Callback = function(Value)
 	_G.selectEgg = Value
 	print(_G.selectEgg)
